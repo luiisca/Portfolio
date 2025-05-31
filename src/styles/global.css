@@ -1,0 +1,199 @@
+:root {
+	/* font */
+	--font-sans: 'Atkinson Hyperlegible', sans-serif;
+	--font-mono: 'JetBrains Mono', monospace;
+	--font-dyslexic: 'OpenDyslexic', sans-serif;
+	--font-dyslexic-mono: 'OpenDyslexic Mono', monospace;
+
+	/* post */
+	--post-txt-size: 16px;
+	--post-txt-length: 70ch;
+	--post-txt-height: 32px;
+
+	/* scrollbar */
+	--clr-scrollbar-thumb: hsl(173 10% 20%);
+
+	/* shadows */
+	--shadow-sm: 0px 0px 4px 4px hsl(0 0% 0% / 4%);
+	--shadow-md: 0px 0px 10px 4px hsl(0 0% 0% / 10%);
+	--shadow-lg: 0px 0px 20px 8px hsl(0 0% 0% / 20%);
+
+	/* border radius */
+	--rounded-4: 4px;
+	--rounded-20: 20px;
+}
+
+html {
+	font-size: 62.5%;
+	scroll-behavior: smooth;
+	scrollbar-width: thin;
+	scrollbar-color: var(--clr-scrollbar-thumb) transparent;
+    @apply !bg-base-200 scroll-smooth scroll-pt-24	overflow-x-hidden overflow-y-scroll;
+}
+
+::selection {
+  @apply bg-primary/20;
+}
+
+html,
+body {
+	height: 100%;
+}
+
+body {
+	font-family: var(--font-sans);
+	font-size: var(--post-txt-size);
+	color: var(--clr-txt);
+	background-color: var(--clr-bg);
+
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-image: linear-gradient(
+			to bottom,
+			hsl(225 74% 40%),
+			hsl(270 70% 40%)
+		);
+		opacity: 0.1;
+		z-index: -1;
+	}
+}
+
+*:focus {
+	outline: none;
+	box-shadow: 0 0 0 4px var(--clr-primary);
+	border-radius: var(--rounded-20);
+}
+
+a {
+	position: relative;
+	color: var(--clr-link-txt);
+	font-weight: 700;
+	text-decoration: none;
+	transition: color 0.3s ease;
+
+	&:hover {
+		color: var(--clr-primary);
+
+		&::before {
+			transform: scaleX(1);
+		}
+	}
+
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		display: block;
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		transform: scaleX(0);
+		transform-origin: left;
+		transition: transform 0.3s ease;
+		background-color: var(--clr-link-background);
+		border-radius: 4px;
+		z-index: -1;
+	}
+}
+
+table {
+	border-collapse: collapse;
+    @apply mb-12
+}
+
+th,
+td {
+	text-align: left;
+	border: 1px solid hsl(0 0% 100% / 40%);
+    @apply p-6
+}
+
+img,
+iframe,
+lite-youtube {
+	border-radius: var(--rounded-20);
+}
+
+lite-youtube {
+	box-shadow: var(--shadow-lg);
+	margin-inline: auto;
+}
+
+lite-youtube::before {
+	background: none;
+}
+
+.sr-only {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	white-space: nowrap;
+	border-width: 0;
+}
+
+/* .prose */
+
+.prose {
+  @apply !max-w-none;
+}
+
+/* .prose heading */
+
+.prose > :is(h1, h2, h3, h4, h5) > a {
+  @apply no-underline font-bold;
+}
+
+.prose > :is(h1, h2, h3, h4, h5) > a::after {
+  @apply pl-2 text-base-200 transition-all content-['#'];
+}
+
+.prose > :is(h1, h2, h3, h4, h5):hover > a::after {
+  @apply text-primary;
+}
+
+/* .prose table */
+
+.prose div > table > thead {
+  @apply border-0;
+}
+
+.prose div > table > thead > tr > th {
+  @apply !relative;
+}
+
+/* .prose a */
+
+.prose :is(p, li) > a {
+  @apply bg-[length:100%_0.2em] hover:bg-[length:100%_100%] bg-[position:0_88%] bg-gradient-to-t from-secondary/50 to-secondary/40 bg-no-repeat transition-all ease-in-out !no-underline;
+}
+
+/* .prose misc */
+
+.prose > p img {
+  @apply w-full;
+}
+
+.prose :is(p, li) > code {
+  @apply bg-base-200 px-2;
+}
+
+.prose li > input {
+  @apply me-2 -my-0.5;
+}
+
+.prose hr {
+  @apply border-none;
+}
+
+/* spoiler */
+
+.spoiler {
+  @apply blur-sm hover:blur-none active:blur-none transition-all select-all;
+}

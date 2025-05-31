@@ -1,0 +1,48 @@
+@import 'tailwindcss';
+@import './global.css';
+@import './fonts.css';
+@import './themes.css';
+@import './post.css';
+@import './code.css';
+
+@plugin '@tailwindcss/typography';
+
+@theme {
+    --color-primary: #fff;
+    --color-secondary: #fff;
+    --color-accent: #fff;
+    --color-neutral: #fff;
+    --color-base-100: #fff;
+    --color-base-200: #fff;
+    --color-base-300: #fff;
+    --color-base-400: #fff;
+    --color-base-500: #fff;
+    --color-base-600: #fff;
+    --color-base-700: #fff;
+    --color-base-800: #fff;
+    --color-base-900: #fff;
+    --color-info: #fff;
+    --color-success: #fff;
+    --color-warning: #fff;
+    --color-error: #fff;
+    --color-neutral-content: #fff;
+}
+
+ul > li:has(input[type="checkbox"]) {
+    list-style-type: none;
+}
+ul > li:has(input[type="checkbox"]) ul li {
+    padding-left: 1.5rem;
+}
+ul:has(li):has(input[type="checkbox"]) {
+    padding: 0;
+}
+
+.prose > :is(h1, h2, h3, h4, h5) > a::after {
+    padding-left: 0px;
+    padding-right: calc(var(--spacing) * 2);
+}
+
+.prose button {
+    cursor: pointer;
+}
