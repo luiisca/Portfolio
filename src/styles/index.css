@@ -4,28 +4,122 @@
 @import './themes.css';
 @import './post.css';
 @import './code.css';
+/* @import './prose.css'; */
 
 @plugin '@tailwindcss/typography';
 
 @theme {
-    --color-primary: #fff;
-    --color-secondary: #fff;
-    --color-accent: #fff;
-    --color-neutral: #fff;
-    --color-base-100: #fff;
-    --color-base-200: #fff;
-    --color-base-300: #fff;
-    --color-base-400: #fff;
-    --color-base-500: #fff;
-    --color-base-600: #fff;
-    --color-base-700: #fff;
-    --color-base-800: #fff;
-    --color-base-900: #fff;
-    --color-info: #fff;
-    --color-success: #fff;
-    --color-warning: #fff;
-    --color-error: #fff;
-    --color-neutral-content: #fff;
+  --font-sans: "Drafting Mono", monospace;
+  --font-mono: "Drafting Mono", monospace;
+
+  /* CORE COLOR PALETTE */
+  --color-base-bg: #2F4F4F;                         /* Dark Slate Gray for overall background */
+  --color-base-text: #D3D3D3;                       /* Light Gray for body text */
+  --color-base-heading: #F5F5F5;                    /* Off-White for headings */
+  --color-code-bg: #222222;                         /* Very Dark Gray for code block backgrounds */
+  
+  /* ACCENT COLORS (Bougainvillea Inspired) */
+  --color-accent-primary: #B07080;                  /* Muted Magenta/Dusty Rose (bracts) */
+  --color-accent-primary-hover: #c78faa;            /* Slightly lighter/more saturated for hover */
+
+  --color-accent-secondary: #8FBC8F;                /* Dark Sea Green (leaves/subtlety) */
+  --color-accent-secondary-hover: #a2c9a2;          /* Lighter for hover */
+
+  /* Example of how to disable default Tailwind color families if you want *true* minimalism
+     and only your defined colors. Uncomment and extend as needed.
+     This ensures only your `--color-*` variables generate color utilities.
+  */
+  /*
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
+  */
+
+  /* SPACING (Tailwind's default spacing scale is quite good. Override specific values if needed) */
+  /* Example: --spacing-1: 0.25rem; */
+
+  /* BREAKPOINTS (Tailwind's default breakpoints. Override if needed) */
+  /* Example: --breakpoint-sm: 640px; */
+}
+
+/* Basic scrollbar styling for a more integrated feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-code-bg); /* Directly using our theme variable */
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent-secondary);
+  border-radius: 4px;
+  border: 2px solid var(--color-code-bg);
+}
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent-secondary-hover);
+}
+
+a {
+  @apply text-accent-primary hover:text-accent-primary-hover transition-colors duration-200;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  @apply text-base-heading;
+}
+
+/* Code blocks using nvim-esque aesthetic */
+pre, code {
+  @apply font-mono bg-code-bg p-1 rounded-sm text-sm;
+}
+pre {
+  @apply p-4 overflow-x-auto;
+}
+
+/* Global selection color */
+::selection {
+  @apply bg-accent-primary text-base-bg; /* Use our theme colors */
+}
+::-moz-selection { /* Firefox */
+  @apply bg-accent-primary text-base-bg;
+}
+
+
+/* Any other global base styles */
+body {
+  @apply font-sans bg-base-bg text-base-text antialiased;
+  /* `antialiased` is a common utility for smoother font rendering */
+	&::before {
+		content: '';
+		width: 100%;
+		height: 100%;
+		position: fixed;
+		background-image: linear-gradient(
+			to bottom,
+			hsl(225 74% 40%),
+			hsl(270 70% 40%)
+		);
+		opacity: 0.1;
+		z-index: -1;
+	}
 }
 
 ul > li:has(input[type="checkbox"]) {
@@ -36,13 +130,4 @@ ul > li:has(input[type="checkbox"]) ul li {
 }
 ul:has(li):has(input[type="checkbox"]) {
     padding: 0;
-}
-
-.prose > :is(h1, h2, h3, h4, h5) > a::after {
-    padding-left: 0px;
-    padding-right: calc(var(--spacing) * 2);
-}
-
-.prose button {
-    cursor: pointer;
 }

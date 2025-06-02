@@ -1,4 +1,7 @@
+@import 'tailwindcss';
+
 .prose {
+    @apply text-base-text;
 	display: grid;
 	grid-template-columns:
 		1fr

@@ -7,6 +7,6 @@
 
 <LiteYoutubeEmbed />
 <div>
-	<h1>main layout</h1>
+	<h1>June 02th, 2025</h1>
 	{@render children()}
 </div>
