@@ -79,7 +79,7 @@
 }
 
 a {
-  @apply text-accent-primary hover:text-accent-primary-hover transition-colors duration-200;
+  @apply transition-colors duration-200;
 }
 
 h1, h2, h3, h4, h5, h6 {
