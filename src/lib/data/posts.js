@@ -26,9 +26,9 @@ export const posts = [
 	},
 	{
 		slug: 'linux-philosophy-pomlock',
-		title: 'The Linux Philosophy in Web Development: Building Pomlock',
+		title: 'Building Pomlock',
 		date: '2024-02-20',
-		tags: ['linux', 'philosophy', 'open-source', 'pomlock'],
+		tags: ['linux', 'open-source', 'pomlock'],
 		excerpt:
 			'Pomlock, my break-enforcing utility, is a small testament to the power of the Linux philosophy: simple tools, doing one thing well...',
 		content: `

@@ -12,8 +12,7 @@
 			>
 			&
 			<a href="https://tailwindcss.com" target="_blank" rel="noopener noreferrer">Tailwind CSS</a>.
-			Inspired by nvim & [@TODO: somthing other than thel linux phylosophy, perhaps the aesthetics
-			of the text based ecosystem].
+			Inspired by the focused elegance and efficient design of text-centric systems.
 		</p>
 		<div
 			class="absolute bottom-0 left-1/2 -translate-x-1/2 opacity-30 text-accent-secondary pointer-events-none"

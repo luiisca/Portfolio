@@ -23,10 +23,9 @@
 </script>
 
 <svelte:head>
-	<title>Luis Cadillo | Self-Taught Developer</title>
 	<meta
 		name="description"
-		content="Portfolio and blog of Luis Cadillo, a self-taught software developer specializing in minimal and efficient web solutions."
+		content="Portfolio and blog of Luis Cadillo. Driven by a passion for learning, I build software with purposeful minimalism, focusing on excellent user experience and effective problem-solving."
 	/>
 </svelte:head>
 
@@ -34,9 +33,9 @@
 	<h1 class="text-4xl md:text-6xl font-bold text-base-heading mb-4">
 		Luis <span class="text-accent-primary">Cadillo</span>
 	</h1>
-	<p class="text-lg md:text-xl text-base-text/80 mb-8 max-w-2xl mx-auto">
-		// Self-Taught Software Developer & Open Source Enthusiast <br />
-		[@TODO: I strive for Crafting minimal & efficient solutions with a Linux & Nvim philosophy].
+	<p class="text-lg md:text-xl text-base-text/80 mb-8 max-w-3xl mx-auto">
+		// I transform challenges into focused, efficient digital solutions. <br />
+		// Building with simplicity and intentional design for impactful user experiences.
 	</p>
 	<div class="space-x-4">
 		<a
@@ -57,40 +56,55 @@
 <section class="py-12 md:py-16">
 	<h2 class="text-3xl font-bold text-base-heading mb-8 text-center">:: Featured Projects</h2>
 	<div class="grid md:grid-cols-2 gap-8">
-		{#each featuredProjects as project}
-			<ProjectCard {project} />
-		{/each}
+		{#if featuredProjects.length > 0}
+			{#each featuredProjects as project}
+				<ProjectCard {project} />
+			{/each}
+		{:else}
+			<p class="text-center text-base-text/70 md:col-span-2">Featured projects coming soon...</p>
+		{/if}
 	</div>
 	<div class="text-center mt-8">
-		<a href="/projects" class="text-accent-primary hover:underline">View All Projects &rarr;</a>
+		<a href="/projects" class="text-accent-primary hover:underline">View All Projects →</a>
 	</div>
 </section>
 
 <section class="py-12 md:py-16 bg-base-bg/50 rounded-lg my-8">
-	<h2 class="text-3xl font-bold text-base-heading mb-8 text-center">:: My Toolkit</h2>
-	<div class="flex flex-wrap justify-center items-center gap-4 md:gap-6 max-w-3xl mx-auto">
+	<h2 class="text-3xl font-bold text-base-heading mb-10 text-center">:: My Toolkit</h2>
+
+	<div
+		class="flex flex-wrap justify-center items-center gap-x-4 gap-y-3 md:gap-x-6 md:gap-y-4 max-w-3xl mx-auto"
+	>
 		{#each skills as skill}
 			<div
-				class="bg-code-bg px-4 py-2 rounded-md text-base-text/90 text-sm flex items-center space-x-2"
+				class="bg-code-bg px-4 py-2 rounded-md text-base-text/90 text-sm flex items-center space-x-2 shadow-sm hover:shadow-md hover:shadow-accent-primary/10 transition-shadow"
 			>
-				<!-- <span class="iconify" data-icon={skill.icon} data-inline="false"></span> Find an icon solution you like -->
+				<!-- <span class="iconify text-accent-secondary" data-icon={skill.icon} data-inline="false"></span> -->
 				<span>{skill.name}</span>
 			</div>
 		{/each}
 	</div>
-	<p class="text-center text-base-text/70 mt-6 text-sm">
-		Driven by the Linux philosophy: simple, modular tools that do one thing well.
-	</p>
+
+	<div class="mt-8 text-center">
+		<p class="text-base-text/80 text-sm md:text-base max-w-xl lg:max-w-2xl mx-auto leading-relaxed">
+			My varied toolkit enables a pragmatic approach to challenges, always aiming for software
+			that's straightforward, intentionally built, and impactful.
+		</p>
+	</div>
 </section>
 
 <section class="py-12 md:py-16">
 	<h2 class="text-3xl font-bold text-base-heading mb-8 text-center">:: Latest Learnings & TILs</h2>
 	<div class="space-y-8 max-w-2xl mx-auto">
-		{#each recentPosts as post}
-			<BlogPostSnippet {post} />
-		{/each}
+		{#if recentPosts.length > 0}
+			{#each recentPosts as post}
+				<BlogPostSnippet {post} />
+			{/each}
+		{:else}
+			<p class="text-center text-base-text/70">Latest learnings and TILs will appear here soon!</p>
+		{/if}
 	</div>
 	<div class="text-center mt-8">
-		<a href="/blog" class="text-accent-primary hover:underline">Explore All Posts &rarr;</a>
+		<a href="/blog" class="text-accent-primary hover:underline">Explore All Posts →</a>
 	</div>
 </section>
