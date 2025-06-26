@@ -1,20 +1,72 @@
+@theme {
+  --font-sans: "Drafting Mono", monospace;
+  --font-mono: "Drafting Mono", monospace;
+
+  /* CORE COLOR PALETTE */
+  --color-base-bg: #2F4F4F;
+  /* Dark Slate Gray for overall background */
+  --color-base-text: #D3D3D3;
+  /* Light Gray for body text */
+  --color-base-heading: #F5F5F5;
+  /* Off-White for headings */
+  --color-code-bg: #222222;
+  /* Very Dark Gray for code block backgrounds */
+
+  /* ACCENT COLORS (Bougainvillea Inspired) */
+  --color-accent-primary: #B07080;
+  /* Muted Magenta/Dusty Rose (bracts) */
+  --color-accent-primary-hover: #c78faa;
+  /* Slightly lighter/more saturated for hover */
+
+  --color-accent-secondary: #8FBC8F;
+  /* Dark Sea Green (leaves/subtlety) */
+  --color-accent-secondary-hover: #a2c9a2;
+  /* Lighter for hover */
+
+  /* Example of how to disable default Tailwind color families if you want *true* minimalism
+     and only your defined colors. Uncomment and extend as needed.
+     This ensures only your `--color-*` variables generate color utilities.
+  */
+  /*
+  --color-slate-*: initial;
+  --color-gray-*: initial;
+  --color-zinc-*: initial;
+  --color-neutral-*: initial;
+  --color-stone-*: initial;
+  --color-red-*: initial;
+  --color-orange-*: initial;
+  --color-amber-*: initial;
+  --color-yellow-*: initial;
+  --color-lime-*: initial;
+  --color-green-*: initial;
+  --color-emerald-*: initial;
+  --color-teal-*: initial;
+  --color-cyan-*: initial;
+  --color-sky-*: initial;
+  --color-blue-*: initial;
+  --color-indigo-*: initial;
+  --color-violet-*: initial;
+  --color-purple-*: initial;
+  --color-fuchsia-*: initial;
+  --color-pink-*: initial;
+  --color-rose-*: initial;
+  */
+
+  /* SPACING (Tailwind's default spacing scale is quite good. Override specific values if needed) */
+  /* Example: --spacing-1: 0.25rem; */
+
+  /* BREAKPOINTS (Tailwind's default breakpoints. Override if needed) */
+  /* Example: --breakpoint-sm: 640px; */
+}
+
 :root {
-	/* post */
-	--post-txt-size: 16px;
-	--post-txt-length: 70ch;
-	--post-txt-height: 32px;
+  /* post */
+  --post-txt-size: 20px;
+  --post-txt-length: 60ch;
+  --post-txt-height: 32px;
 
-	/* scrollbar */
-	--clr-scrollbar-thumb: hsl(173 10% 20%);
-
-	/* shadows */
-	--shadow-sm: 0px 0px 4px 4px hsl(0 0% 0% / 4%);
-	--shadow-md: 0px 0px 10px 4px hsl(0 0% 0% / 10%);
-	--shadow-lg: 0px 0px 20px 8px hsl(0 0% 0% / 20%);
-
-	/* border radius */
-	--rounded-4: 4px;
-	--rounded-20: 20px;
+  /* scrollbar */
+  --clr-scrollbar-thumb: hsl(173 10% 20%);
 }
 
 /* html { */
@@ -31,77 +83,163 @@
 /* } */
 
 *:focus {
-	outline: none;
-	box-shadow: 0 0 0 4px var(--clr-primary);
-	border-radius: var(--rounded-20);
+  outline: none;
+  box-shadow: 0 0 0 4px var(--clr-primary);
+  border-radius: var(--rounded-20);
 }
 
 a {
-	position: relative;
-	font-weight: 700;
-	text-decoration: none;
-	transition: color 0.3s ease;
+  position: relative;
+  font-weight: 700;
+  text-decoration: none;
+  transition: color 0.3s ease;
 
-	&:hover {
-		color: var(--clr-primary);
+  &:hover {
+    color: var(--clr-primary);
 
-		&::before {
-			transform: scaleX(1);
-		}
-	}
+    &::before {
+      transform: scaleX(1);
+    }
+  }
 
-	&::before {
-		content: '';
-		width: 100%;
-		height: 100%;
-		display: block;
-		position: absolute;
-		bottom: 0;
-		left: 0;
-		transform: scaleX(0);
-		transform-origin: left;
-		transition: transform 0.3s ease;
-		background-color: var(--clr-link-background);
-		border-radius: 4px;
-		z-index: -1;
-	}
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+    background-color: var(--clr-link-background);
+    border-radius: 4px;
+    z-index: -1;
+  }
 }
 
 table {
-	border-collapse: collapse;
-    @apply mb-12
+  border-collapse: collapse;
+  @apply mb-12
 }
 
 th,
 td {
-	text-align: left;
-	border: 1px solid hsl(0 0% 100% / 40%);
-    @apply p-6
+  text-align: left;
+  border: 1px solid hsl(0 0% 100% / 40%);
+  @apply p-6
 }
 
 img,
 iframe,
 lite-youtube {
-	border-radius: var(--rounded-20);
+  border-radius: var(--rounded-20);
 }
 
 lite-youtube {
-	box-shadow: var(--shadow-lg);
-	margin-inline: auto;
+  box-shadow: var(--shadow-lg);
+  margin-inline: auto;
 }
 
 lite-youtube::before {
-	background: none;
+  background: none;
 }
 
 .sr-only {
-	position: absolute;
-	width: 1px;
-	height: 1px;
-	padding: 0;
-	margin: -1px;
-	overflow: hidden;
-	clip: rect(0, 0, 0, 0);
-	white-space: nowrap;
-	border-width: 0;
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border-width: 0;
+}
+
+/* Basic scrollbar styling for a more integrated feel */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-code-bg);
+  /* Directly using our theme variable */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: var(--color-accent-secondary);
+  border-radius: 4px;
+  border: 2px solid var(--color-code-bg);
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--color-accent-secondary-hover);
+}
+
+a {
+  @apply transition-colors duration-200;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  @apply text-base-heading;
+}
+
+/* Code blocks using nvim-esque aesthetic */
+pre,
+code {
+  @apply font-mono bg-code-bg p-1 rounded-sm text-sm;
+}
+
+pre {
+  @apply p-4 overflow-x-auto;
+}
+
+/* Global selection color */
+::selection {
+  @apply bg-accent-primary text-base-bg;
+  /* Use our theme colors */
+}
+
+::-moz-selection {
+  /* Firefox */
+  @apply bg-accent-primary text-base-bg;
+}
+
+
+/* Any other global base styles */
+body {
+  @apply font-sans bg-base-bg text-base-text antialiased;
+
+  /* `antialiased` is a common utility for smoother font rendering */
+  &::before {
+    content: '';
+    width: 100%;
+    height: 100%;
+    position: fixed;
+    background-image: linear-gradient(to bottom,
+        hsl(225 74% 40%),
+        hsl(270 70% 40%));
+    opacity: 0.1;
+    z-index: -1;
+  }
+}
+
+ul>li:has(input[type="checkbox"]) {
+  list-style-type: none;
+}
+
+ul>li:has(input[type="checkbox"]) ul li {
+  padding-left: 1.5rem;
+}
+
+ul:has(li):has(input[type="checkbox"]) {
+  padding: 0;
 }

@@ -1,138 +1,167 @@
-@import 'tailwindcss';
-
 .prose {
-    @apply text-base-text;
-	display: grid;
-	grid-template-columns:
-		1fr
-		[gutter-start]
-		40px
-		[content-start]
-		minmax(0px, var(--post-txt-length))
-		[content-end]
-		40px
-		[gutter-end]
-		1fr;
+  display: grid;
+  grid-template-columns:
+    1fr [gutter-start] 2.5rem [content-start] minmax(0px, var(--post-txt-length)) [content-end] 2.5rem [gutter-end] 1fr;
+  /* 40px = 2.5rem */
 
-	> * {
-		grid-column: content-start / content-end;
-	}
+  >* {
+    grid-column: content-start / content-end;
+  }
 
-	header {
-		margin: var(--spacing-128) 0 var(--spacing-64) 0;
-		text-align: center;
-	}
+  header {
+    @apply text-center mt-52 mb-24;
+  }
 
-	h1 {
-		color: var(--clr-primary);
-		line-height: clamp(32px, 6vw, 48px);
-	}
+  h1 {
+    @apply mt-24 text-accent-primary;
+    /* color: var(--clr-primary); */
+    line-height: clamp(2rem, 6vw, 3rem);
+  }
 
-	h2 {
-		margin-top: var(--spacing-64);
-		margin-bottom: var(--spacing-24);
-		color: var(--clr-primary);
-	}
+  h2 {
+    @apply mt-24 mb-10 text-accent-primary;
+    /* color: var(--clr-primary); */
+  }
 
-	/* no one has to know 🤫 */
-	#table-of-contents + ul a {
-		text-decoration: none;
-		font-weight: inherit;
-	}
+  #table-of-contents,
+  #table-of-contents+ul {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+  }
 
-	p > a,
-	li > a {
-		text-decoration: underline;
-		text-underline-offset: 4px;
-	}
+  /* no one has to know 🤫 */
+  #table-of-contents+ul a {
+    text-decoration: none;
+    font-weight: inherit;
+  }
 
-	p,
-	li {
-		font-size: var(--post-txt-size);
-		line-height: var(--post-txt-height);
-	}
+  p>a,
+  li>a {
+    text-decoration: underline;
+    text-underline-offset: 4px;
+  }
 
-	p:has(img) {
-		display: contents;
-	}
+  p,
+  li {
+    font-size: var(--post-txt-size);
+    line-height: var(--post-txt-height);
+  }
 
-	@media (width >= 800px) {
-		& :where(iframe, video, img, pre, .remark-code-title) {
-			grid-column: gutter-start / gutter-end;
-		}
-	}
+  p:has(img) {
+    display: contents;
+  }
 
-	img {
-		justify-self: center;
-	}
+  @media (width >=800px) {
+    & :where(iframe, video, img, pre, .rehype-code-title) {
+      grid-column: gutter-start / gutter-end;
+    }
+  }
 
-	img,
-	iframe,
-	video,
-	p,
-	ul,
-	ol,
-	pre,
-	blockquote,
-	details {
-		margin-bottom: var(--spacing-32);
-	}
+  img {
+    justify-self: center;
+  }
 
-	li > ul {
-		margin-bottom: 0;
-	}
+  img,
+  iframe,
+  video,
+  p,
+  ul,
+  ol,
+  pre,
+  blockquote,
+  details {
+    @apply mb-12;
+  }
 
-	ul,
-	ol {
-		display: grid;
-		row-gap: var(--spacing-8);
-		list-style-type: none;
-		list-style-position: inside;
-	}
+  li>ul {
+    /* Nested specific margin */
+    @apply mb-0;
+  }
 
-	ul li::before {
-		content: '🔥';
-		padding-right: var(--spacing-8);
-	}
+  ul {
+    @apply grid gap-y-3 list-none list-inside;
 
-	li > ul {
-		margin-top: var(--spacing-8);
-		padding-left: var(--spacing-16);
-	}
+    /* ::before styling for UL needs to remain custom */
+    li::before {
+      @apply pr-3 content-['🔥'];
+    }
+  }
 
-	li > ul > li {
-		list-style-type: circle;
-	}
+  ol {
+    @apply grid gap-y-3 list-decimal list-inside;
+  }
 
-	li > ul > li::before {
-		content: none;
-	}
+  /* Common styles for nested lists */
+  li>ul,
+  li>ol {
+    @apply mt-3 pl-6;
+  }
 
-	ol {
-		list-style-type: decimal;
-	}
+  /* Specific style for items in nested ULs, using standard disc */
+  li>ul>li {
+    @apply list-disc;
 
-	li > ol {
-		margin-top: var(--spacing-8);
-		padding-left: var(--spacing-16);
-	}
+    &::before {
+      /* Override the fire emoji for nested UL items if using list-disc */
+      content: none;
+    }
+  }
 
-	blockquote {
-		padding: var(--spacing-32);
-		color: var(--post-blockquote-txt);
-		background-color: var(--post-blockquote-bg);
-		border: 1px solid var(--post-blockquote-border);
-		border-top: 4px solid var(--clr-primary);
-		border-radius: var(--rounded-20);
-		box-shadow: var(--shadow-sm);
+  blockquote {
+    @apply p-12 rounded-2xl shadow-sm;
+    @apply text-base-text/80 bg-code-bg;
+    @apply border border-base-text/20;
+    @apply border-t-4 border-t-accent-primary;
+    /* If custom --shadow-sm is very different and critical:
+           box-shadow: var(--shadow-sm);
+           (and remove @apply shadow-sm)
+        */
 
-		p {
-			margin-bottom: 0;
-		}
-	}
+    p {
+      @apply mb-0;
+    }
+  }
 
-	details summary {
-		margin-bottom: var(--spacing-8);
-		font-weight: 700;
-	}
+  details summary {
+    @apply mb-3 font-bold;
+  }
+
+  /* .card is a custom component class */
+  .card {
+    @apply relative mb-12 p-12 border-4 rounded-2xl;
+    border-color: var(--border-color, var(--color-base-heading));
+
+    .icon {
+      @apply size-12 p-1.5 absolute left-0 top-0 -translate-x-1/2 -translate-y-1/2 bg-[#101a1b];
+      color: var(--icon-color);
+    }
+
+    /* Variant specific styles remain as they set CSS variables */
+    &.info {
+      --icon-color: var(--color-accent-primary);
+      --border-color: var(--color-accent-primary);
+    }
+
+    &.warning {
+      --icon-color: var(--color-accent-secondary);
+      --border-color: var(--color-accent-secondary);
+    }
+
+    &.danger {
+      --icon-color: var(--color-accent-primary-hover);
+      --border-color: var(--color-accent-primary-hover);
+    }
+  }
+}
+
+/* spoiler */
+.spoiler {
+  @apply blur-sm hover:blur-none active:blur-none transition-all select-all;
 }
