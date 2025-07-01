@@ -233,7 +233,7 @@ body {
 }
 
 ul>li:has(input[type="checkbox"]) {
-  list-style-type: none;
+  /* list-style-type: none; */
 }
 
 ul>li:has(input[type="checkbox"]) ul li {

@@ -86,16 +86,16 @@
   }
 
   ul {
-    @apply grid gap-y-3 list-none list-inside;
+    /* @apply grid gap-y-3 list-none list-inside; */
 
     /* ::before styling for UL needs to remain custom */
-    li::before {
-      @apply pr-3 content-['🔥'];
-    }
+    /* li::before { */
+    /*   @apply pr-3 content-['👉']; */
+    /* } */
   }
 
   ol {
-    @apply grid gap-y-3 list-decimal list-inside;
+    /* @apply grid gap-y-3 list-decimal list-inside; */
   }
 
   /* Common styles for nested lists */
@@ -110,8 +110,12 @@
 
     &::before {
       /* Override the fire emoji for nested UL items if using list-disc */
-      content: none;
+      /* content: none; */
     }
+  }
+
+  b {
+    @apply text-base-bg bg-base-text outline-2 outline-base-text font-normal;
   }
 
   blockquote {
